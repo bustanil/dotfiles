@@ -1,0 +1,54 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+let mapleader=" "
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+set sneak
+set number relativenumber
+
+"set easymotion
+
+"""""""""""""""" set IDE shortcuts
+
+" we use one character shortcuts for frequently used actions
+map <leader><space> <Action>(RecentFiles)
+map <leader>c <Action>(CheckinProject)
+map <leader>t <Action>(UpdateProject)
+map <leader>p <Action>(Vcs.Push)
+map <leader>f <Action>(FileStructurePopup)
+map <leader>l <Action>(ReformatCode)
+map <leader>? <Action>(GotoAction)
+
+" run/debug (x?)
+map <leader>xx <Action>(Run)
+map <leader>xd <Action>(Debug)
+map <leader>xs <Action>(Stop)
+" file navigation shortcuts (s?)
+map <leader>sf <Action>(GotoFile)
+
+" refactor actions (r?)
+map <leader>rr <Action>(RenameElement)
+map <leader>rl <Action>(IntroduceVariable)
+
