@@ -52,23 +52,16 @@ vim.opt.rtp:prepend(lazypath)
 
 -- install packages
 require("lazy").setup({
-	{ "folke/tokyonight.nvim",
-	  lazy = false,
-	  priority = 1000,
-	  config = function()
-		  vim.cmd([[colorscheme tokyonight]])
-	  end,
-	},
 	{ "nvim-telescope/telescope.nvim",
-	  tag = "0.1.4",
-	  dependencies = { "nvim-lua/plenary.nvim" },
-	  config = function()
-		local builtin = require('telescope.builtin')
-		vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-		vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-		vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-		vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-	  end,
+    tag = "0.1.4",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+    local builtin = require('telescope.builtin')
+    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+    vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+    vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+    end,
 	},
   { "smjonas/inc-rename.nvim",
     config = function()
@@ -83,20 +76,36 @@ require("lazy").setup({
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "haskell" },
+          ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "haskell", "scala" },
           sync_install = false,
           highlight = { enable = true },
           indent = { enable = true },  
         })
     end
- }
+  },
+  -- TODO: https://www.reddit.com/r/neovim/comments/1124tv8/help_setting_up_nvimcmp_with_lazynvim/
+  { "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path", 
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/nvim-cmp",
+    }
+  },
+  { "loctvl842/monokai-pro.nvim",
+	  lazy = false,
+	  priority = 1000,
+    config = function()
+      require("monokai-pro").setup({
+        filter = "spectrum",
+      })
+      vim.cmd([[colorscheme monokai-pro]])
+    end
+  },
 })
 
 
 -- LSP
 require'lspconfig'.tsserver.setup{}
--- vim.lsp.start({
---  name = 'typescript',
---  cmd = {'typescript-language-server', '--stdio'},
---  root_dir = vim.fs.dirname(vim.fs.find({'package.json'}, { upward = true })[1]),
---})
+require'lspconfig'.hls.setup{}
