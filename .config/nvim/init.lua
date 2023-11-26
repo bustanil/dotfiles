@@ -93,6 +93,7 @@ require("lazy").setup({
       "hrsh7th/nvim-cmp",
     }
   },
+  -- color scheme
   { "loctvl842/monokai-pro.nvim",
 	  lazy = false,
 	  priority = 1000,
@@ -103,9 +104,12 @@ require("lazy").setup({
       vim.cmd([[colorscheme monokai-pro]])
     end
   },
+  -- TODO lualine
 })
 
 
 -- LSP
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.hls.setup{}
+-- TODO scala metals
+-- TODO PHP
