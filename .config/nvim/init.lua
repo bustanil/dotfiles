@@ -76,7 +76,7 @@ require("lazy").setup({
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-          ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "haskell", "scala" },
+          ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "haskell", "scala", "go" },
           sync_install = false,
           highlight = { enable = true },
           indent = { enable = true },  
@@ -105,10 +105,26 @@ require("lazy").setup({
       require("monokai-pro").setup({
         filter = "spectrum",
       })
-      vim.cmd([[colorscheme monokai-pro]])
+      -- vim.cmd([[colorscheme monokai-pro]])
+    end
+  },
+  {
+    "catppuccin/nvim", name = "catppuccin", priority = 1000,
+    config = function()
+      vim.cmd.colorscheme "catppuccin"
     end
   },
   -- TODO lualine
+  {
+    "nvim-tree/nvim-tree.lua",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
+  },
 })
 
 
@@ -172,5 +188,6 @@ lspconfig.tsserver.setup { capabilities = capabilities, }
 lspconfig.hls.setup{ capabilities = capabilities, }
 lspconfig.metals.setup{ capabilities = capabilities, }
 lspconfig.phpactor.setup{ capabilities = capabilities, }
+lspconfig.gopls.setup{ capabilities = capabilities, }
 -- TODO PHP
 
