@@ -114,7 +114,10 @@ require("lazy").setup({
       vim.cmd.colorscheme "catppuccin"
     end
   },
-  -- TODO lualine
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  },
   {
     "nvim-tree/nvim-tree.lua",
     lazy = false,
@@ -180,6 +183,8 @@ cmp.setup {
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+require("lualine").setup {}
 
 -- LSP
 local lspconfig = require('lspconfig')
